@@ -4,7 +4,6 @@ from urllib.parse import unquote
 from django.db.models import Count, Avg, Min, Max
 from .forms import AbcModelForm
 from .models import AbcModel
-from .filters import AbcModelFilter
 
 def xyz_form(request):
     if request.method == "POST":
@@ -63,13 +62,8 @@ def xyz_result_all(request):
     return render(request, "xyz_result_all.html", {"data_for_table": data_for_table})
 
 def xyz_result_filtered(request):
-    qs = AbcModel.objects.all()
-    filterset = AbcModelFilter(request.GET, queryset=qs)
-    filtered_qs = filterset.qs
-
     sort_order = request.GET.get('sort_score', 'asc')
     filtered_qs = filtered_qs.order_by('-final_score' if sort_order == 'desc' else 'final_score')
-
     data_for_table = []
     for obj in filtered_qs:
         if obj.final_score != 0.5 * obj.x + 0.5 * obj.y:
