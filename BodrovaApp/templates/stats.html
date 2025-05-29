@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Общая статистика по итоговым оценкам</h2>
+<ul>
+  <li>Всего записей: {{ stats.total_records }}</li>
+  <li>Средняя итоговая оценка: {{ stats.avg_score|default:"-" }}</li>
+  <li>Минимальная итоговая оценка: {{ stats.min_score|default:"-" }}</li>
+  <li>Максимальная итоговая оценка: {{ stats.max_score|default:"-" }}</li>
+</ul>
+{% endblock %}

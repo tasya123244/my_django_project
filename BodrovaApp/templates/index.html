@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<nav style="text-align: center; margin-bottom: 20px;">
+    {% for section in sections %}
+        <a href="#{{ section.id }}">{{ section.title }}</a>{% if not forloop.last %} | {% endif %}
+    {% endfor %}
+</nav>
+
+
+<div id="carCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% for image in images %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img src="{% static image.src %}" class="d-block w-100" alt="{{ image.alt }}">
+            </div>
+        {% endfor %}
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+{% for section in sections %}
+    <h2 id="{{ section.id }}" align="center">{{ section.title }}</h2>
+
+    {% if section.id == "cars" %}
+        <table align="center" cellspacing="0" cellpadding="10" border="2"
+            width="800" bordercolor="#FF0000">
+            <tr>
+                <td align="center"><b>Модель</b></td>
+                <td align="center"><b>Фото</b></td>
+                <td align="center"><b>Описание</b></td>
+            </tr>
+            {% for car in cars %}
+            <tr>
+                <td align="center"><b>{{ car.name }}</b></td>
+                <td align="center"><img src="{% static car.img %}" height="150" width="250" alt="{{ car.name }}"></td>
+                <td align="center"><b>{{ car.description }}</b></td>
+            </tr>  
+            {% endfor %}
+        </table>
+    {% elif section.id == "services" %}
+        <p align="center">Мы предоставляем услуги по продаже, тюнингу и обслуживанию премиальных автомобилей.</p>
+    {% endif %}
+{% endfor %}
+
+<p style="text-align: center;">
+    <a href="#top">Вернуться к началу</a>
+</p>
+
+{% endblock %}

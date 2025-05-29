@@ -1,0 +1,39 @@
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ФИО</th>
+      <th>X</th>
+      <th>Y</th>
+      <th>Итоговая оценка</th>
+      <th>Результат</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ last_row.full_name }}</td>
+      <td>{{ last_row.x }}</td>
+      <td>{{ last_row.y }}</td>
+      <td>{{ last_row.final_score }}</td>
+      <td>{{ last_row.result }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<a href="{% url 'BodrovaApp:xyz_form' %}" class="button">Вернуться назад</a>
+
+<style>
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #4580a0;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .button:hover {
+    background-color: #356080;
+  }
+</style>

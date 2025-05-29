@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .card {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+
+  .img-fluid {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 1rem 1.5rem;
+  }
+
+  .card-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .card-text small {
+    font-size: 0.9rem;
+    color: #666;
+  }
+</style>
+
+<h1 class="mb-4">Менеджмент программы</h1>
+
+{% for manager in managers %}
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-3">
+        <img src="{{ manager.photo.url }}" class="img-fluid rounded-start w-100 h-100">
+      </div>
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title">{{ manager.full_name }}</h5>
+          <p class="card-text mb-1">{{ manager.get_role_display }}</p>
+          <p class="card-text">
+            <small class="text-muted">{{ manager.email }}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}

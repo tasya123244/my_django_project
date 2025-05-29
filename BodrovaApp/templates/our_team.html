@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наша команда</title>
+</head>
+<body>
+
+    <h1>Наша команда</h1>
+
+    <div class="container">
+        <h2>Я</h2>
+        <div class="person">
+            <img src="{% static user_info.photo %}" alt="{{ user_info.name }}">
+            <div>
+                <p><strong>{{ user_info.name }}</strong></p>
+                <p>Email: <a href="mailto:{{ user_info.email }}">{{ user_info.email }}</a></p>
+                <p>Телефон: {{ user_info.phone }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>{{ program_info.name }}</h2>
+        <p>{{ program_info.description }}</p>
+
+        <h3>Лучшие работники</h3>
+        <div class="person">
+            <img src="{% static program_info.leader1.photo %}" alt="{{ program_info.leader1.name }}">
+            <div>
+                <p><strong>{{ program_info.leader1.name }}</strong></p>
+                <p>Email: <a href="mailto:{{ program_info.leader1.email }}">{{ program_info.leader1.email }}</a></p>
+            </div>
+        </div>
+
+        <div class="person">
+            <img src="{% static program_info.leader2.photo %}" alt="{{ program_info.leader2.name }}">
+            <div>
+                <p><strong>{{ program_info.leader2.name }}</strong></p>
+                <p>Email: <a href="mailto:{{ program_info.leader2.email }}">{{ program_info.leader2.email }}</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Мои помощники</h2>
+        {% for help in helpers %}
+        <div class="person">
+            <img src="{% static help.photo %}">
+            <div>
+                <p><strong>{{ help.name }}</strong></p>
+                <p>Email: <a href="mailto:{{ help.email }}">{{ help.email }}</a></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
+{% endblock %}

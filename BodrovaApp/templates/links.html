@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Полезные ссылки</h2>
+
+    <!-- Ненумерованный список с гиперссылками -->
+    <ul style="list-style: none; display: flex; gap: 20px; padding: 0;">
+        {% for link in mlinks %}
+            <li>
+                {% if link.type == "text" %}
+                    <a href="{{ link.url }}" {% if forloop.first %}target="_blank"{% endif %}>
+                        {{ link.label }}
+                    </a>
+                {% elif link.type == "image" %}
+                    <a href="{{ link.url }}">
+                        <img src="{% static link.img %}" alt="Логотип" style="width: 150px; height: auto;">
+                    </a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>Нет доступных ссылок</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Нумерованный список -->
+    <h3>Популярные автомобильные бренды</h3>
+    <ol>
+        {% for brand in car_brands %}
+            <li>{{ brand }}</li>
+        {% endfor %}
+    </ol>
+
+    <!-- Вложенный список -->
+    <h3>Категории автомобилей</h3>
+    <ul>
+        {% for category, cars in car_categories.items %}
+            <li>{{ category }}
+                <ul>
+                    {% for car in cars %}
+                        <li>{{ car }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

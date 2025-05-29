@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h3>Фильтрация записей</h3>
+
+  <!-- Форма фильтра -->
+  <form method="get" class="mb-3">
+    {{ filter.form.as_p }}
+    <button type="submit" class="btn btn-primary">Применить</button>
+    <a href="{% url 'BodrovaApp:xyz_result_filtered' %}" class="btn btn-secondary">Сбросить</a>
+  </form>
+
+  <!-- Таблица -->
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>ФИО</th>
+        <th>X</th>
+        <th>Y</th>
+        <th>
+          Итоговая оценка
+          <a href="?sort_score=asc" title="Сортировать по возрастанию">▲</a>
+          <a href="?sort_score=desc" title="Сортировать по убыванию">▼</a>
+        </th>
+        <th>Результат</th>
+        <th>Дата изменения</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in data_for_table %}
+        <tr>
+          <td>{{ row.id }}</td>
+          <td>{{ row.full_name }}</td>
+          <td>{{ row.x }}</td>
+          <td>{{ row.y }}</td>
+          <td>{{ row.final_score }}</td>
+          <td>{{ row.result }}</td>
+          <td>{{ row.current_date|date:"Y-m-d H:i" }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

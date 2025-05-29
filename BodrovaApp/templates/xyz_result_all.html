@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  {% if error %}
+    <p>{{ error }}</p>
+  {% else %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>ФИО</th>
+          <th>X</th>
+          <th>Y</th>
+          <th>Итоговая оценка</th>
+          <th>Результат</th>
+          <th>Дата изменения</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data_for_table %}
+          <tr>
+            <td>{{ row.id }}</td>
+            <td>{{ row.full_name }}</td>
+            <td>{{ row.x }}</td>
+            <td>{{ row.y }}</td>
+            <td>{{ row.final_score }}</td>
+            <td>{{ row.result }}</td>
+            <td>
+              {% if row.current_date %}
+                {{ row.current_date|date:"Y-m-d H:i" }}
+              {% else %}
+                -
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %}

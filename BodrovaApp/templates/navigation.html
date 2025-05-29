@@ -1,0 +1,55 @@
+{# Навигационное меню с Bootstrap 5 #}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- Название сайта/логотип -->
+        <a class="navbar-brand" href="{% url 'index' %}">Drive</a>
+        <!-- Кнопка для мобильного меню -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Ссылки навигации -->
+        <div class="collapse navbar-collapse" id="main-nav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'BodrovaApp:index' %}">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'BodrovaApp:zadacha_1' 'x=2/y=3' %}">Задача 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'BodrovaApp:zadacha_2' 'Платон, суббота, 6|Платон, суббота, 8|Саша, воскресенье, 7|Платон, воскресенье, 6|Руслан, воскресенье, 3' 'вторник' %}">Задача 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'BodrovaApp:links' %}">Полезные ссылки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'BodrovaApp:our_team' %}">Наша команда</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'BodrovaApp:xyz_result_all' %}">Все студенты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'BodrovaApp:xyz_form' %}">Добавить студента</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'BodrovaApp:xyz_result_filtered' %}">Фильтр студентов</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'BodrovaApp:stats_view' %}">Статистика студентов</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'hse_education:profile' %}">profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'hse_education:management' %}">managment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'hse_education:program' %}">program</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'hse_education:classmates' %}">classmates</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
