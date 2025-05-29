@@ -4,16 +4,23 @@ from urllib.parse import unquote
 from django.db.models import Count, Avg, Min, Max
 from .forms import AbcModelForm
 from .models import AbcModel
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
 def xyz_form(request):
-    if request.method == "POST":
-        form = AbcModelForm(request.POST)
-        if form.is_valid():
-            instance = form.save()  
-            return redirect("BodrovaApp:xyz_result", pk=instance.pk)
-    else:
-        form = AbcModelForm()
-    return render(request, "xyz_form.html", {"form": form})
+    result = None
+    if request.method == 'POST':
+        try:
+            x = float(request.POST.get('x', 0))
+            y = float(request.POST.get('y', 0))
+            if x == 0 or y == 0:
+                result = "Ошибка: X и Y не должны быть нулями"
+            else:
+                result = 1 / (x * y)
+        except (ValueError, TypeError):
+            result = "Ошибка ввода данных"
+    
+    return render(request, 'xyz_form.html', {'result': result})
 
 
 

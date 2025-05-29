@@ -3,19 +3,13 @@
 
 {% block content %}
 <h5>BodrovaApp: Форма оценки</h5>
-
 <form method="POST">
     {% csrf_token %}
-
-    {{ form.full_name.label_tag }} {{ form.full_name }}
-    <br><br>
-
-    {{ form.x.label_tag }} {{ form.x }}
-    <br><br>
-
-    {{ form.y.label_tag }} {{ form.y }}
-    <br><br>
-
-    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <label>X: <input type="number" name="x" step="any"></label>
+    <label>Y: <input type="number" name="y" step="any"></label>
+    <button type="submit">Рассчитать</button>
+    {% if result %}
+        <p>Результат: {{ result }}</p>
+    {% endif %}
 </form>
 {% endblock %}
